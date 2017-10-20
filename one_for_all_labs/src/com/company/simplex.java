@@ -18,17 +18,13 @@ public class simplex {
     final static double M = Double.MAX_VALUE;
 
     public static void main(String[] args) {
-        // коэффициенты из целевой функции
-        // коэффициенты из ограничений
-        // коэффициенты при базисных переменных
-        // базисные переменные
-        // базисное решение
+     
 
-        double[] c = new double[n];
-        double[][] a = new double[m][n];
-        double[] cB = new double[m];
-        int[] bV = new int[m];
-        double[] bD = new double[m];
+        double[] c = new double[n];// коэффициенты из целевой функции
+        double[][] a = new double[m][n]; // коэффициенты из ограничений
+        double[] cB = new double[m];// коэффициенты при базисных переменных
+        int[] bV = new int[m];// базисные переменные
+        double[] bD = new double[m];// базисное решение
 
         c[0] = 1;
         c[1] = 0;
