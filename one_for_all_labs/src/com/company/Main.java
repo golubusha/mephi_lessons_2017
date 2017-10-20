@@ -26,7 +26,7 @@ public class Main {
 
         Optional<Result> indexOf(String subString) {
 
-            //Получение результатов
+            //Получение результатов i-позиция j-сдвиг
             List<Result> result = new ArrayList<>();
             for (int i = 1; i <= subString.length(); i++) {
                 for (int j = 0; j < i; j++) {
@@ -38,7 +38,7 @@ public class Main {
                 }
             }
             return result
-                    .stream()
+                    .stream() //конвейер
                     .sorted(comparing(Result::firstNumber))
                     .findFirst();
         }
@@ -47,12 +47,12 @@ public class Main {
         private List<BigInteger> getSequenceFromString(String subString, int numberLength, int offset,
                                                        BigInteger firstShouldLessThan) {
             List<BigInteger> result = new ArrayList<>();
-            int index = offset;
+            int index = offset; //смещение
             int innerLength = numberLength;
 
             
             //Разбиваем последовательность на числа
-            while (index + innerLength <= subString.length()) {
+            while (index + innerLength <= subString.length()) { //index-номер символа, с которого начинаю чтение подстроки
                 String numberStr = subString.substring(index, index + innerLength);
                 if (numberStr.startsWith("0")) {
                     return emptyList();
@@ -62,7 +62,7 @@ public class Main {
                     return emptyList();
                 }
                 if (index == 0) {
-                    if (result.get(0).compareTo(firstShouldLessThan) > 0) {
+                    if (result.get(0).compareTo(firstShouldLessThan) > 0) { //передаем первое число из предыдущего результата. если текущее больше - не подходит
                         return emptyList();
                     }
                 }
@@ -82,7 +82,7 @@ public class Main {
                         result.add(new BigInteger(subString.substring(index) +
                                 new BigInteger(subString.substring(0, index)).add(BigInteger.ONE)));
                     } else {
-                        result.add(appendAfter(result.get(result.size() - 1),
+                        result.add(appendAfter(result.get(result.size() - 1), //берем из результатов последнее число
                                 new BigInteger(prefix)));
                     }
                 }
@@ -114,7 +114,7 @@ public class Main {
             return lastNumber.subtract(prevNumber).equals(BigInteger.ONE);
         }
 
-        private boolean firstNumbersAreSequent(List<BigInteger> numbers) {
+        private boolean firstNumbersAreSequent(List<BigInteger> numbers) { //числа последовательные
             if (numbers.isEmpty())
                 return false;
             if (numbers.size() == 1)
